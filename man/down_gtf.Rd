@@ -7,7 +7,7 @@
 down_gtf(No.assembly)
 }
 \arguments{
-\item{No.assembly}{NCBI assembly number.}
+\item{No.assembly}{NCBI assembly number, such as "GCF_000001405.40".}
 }
 \value{
 gene & protein informations.
@@ -16,5 +16,5 @@ gene & protein informations.
 Download a gtf file from ncbi and get gene & protein infomations.
 }
 \examples{
-down_gtf("GCF_000001405.40")
+NA
 }
