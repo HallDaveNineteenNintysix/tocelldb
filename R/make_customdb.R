@@ -31,32 +31,26 @@ make_customdb <- function(interaction_nodes,gene_info=NULL,enrich=NULL,annotatio
     colnames(geneinfo) <- "Symbol"
   }
   else {
-  interaction_nodes <- utils::read.csv(interaction_nodes,sep="\t")[,c(1,2)]
-  tmp1 <- interaction_nodes[,1]
-  tmp2 <- interaction_nodes[,2]
-  colnames(interaction_nodes) <- c("ligand","receptor")
-  for (i in 1:length(interaction_nodes$ligand)) {
-    gene1 <- gene_info$gene[match(tmp1[i],gene_info$protein_id)]
-    gene2 <- gene_info$gene[match(tmp2[i],gene_info$protein_id)]
-    tmp1[i] <- gene1
-    tmp2[i] <- gene2
-  }
-  interaction_nodes[,1] <- tmp1
-  interaction_nodes[,2] <- tmp2
-  interaction_nodes$interaction_name <- paste0(interaction_nodes$ligand,"-",interaction_nodes$receptor)
-  interaction_nodes$pathway_name <- interaction_nodes$ligand
-  geneinfo <- as.data.frame(unique(c(interaction_nodes$ligand,interaction_nodes$receptor)))
-  colnames(geneinfo) <- "Symbol"
-  if (is.null(enrich)){}
-  else
-  {
-    interaction_nodes$evidence <- enrich
-  }
-  if (is.null(annotation)){}
-  else
-  {
-    interaction_nodes$annotation <- annotation
-  }
+    interaction_nodes <- utils::read.csv(interaction_nodes,sep="\t")[,c(1,2)]
+    colnames(interaction_nodes) <- c("ligand","receptor")
+    for (i in 1:length(interaction_nodes$ligand)) {
+      interaction_nodes$ligand[i] <- gene_info$gene[match(interaction_nodes$ligand[i],gene_info$protein_id)]
+      interaction_nodes$receptor[i] <- gene_info$gene[match(interaction_nodes$receptor[i],gene_info$protein_id)]
+    }
+    interaction_nodes$interaction_name <- paste0(interaction_nodes$ligand,"-",interaction_nodes$receptor)
+    interaction_nodes$pathway_name <- interaction_nodes$ligand
+    geneinfo <- as.data.frame(unique(c(interaction_nodes$ligand,interaction_nodes$receptor)))
+    colnames(geneinfo) <- "Symbol"
+    if (is.null(enrich)){}
+    else
+    {
+      interaction_nodes$evidence <- enrich
+    }
+    if (is.null(annotation)){}
+    else
+    {
+      interaction_nodes$annotation <- annotation
+    }
   }
   return(CellChat::updateCellChatDB(
     interaction_nodes,
