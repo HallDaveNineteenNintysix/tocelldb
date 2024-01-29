@@ -20,7 +20,7 @@ make_cellchatdb <- function(interaction_nodes,enrich=NULL,annotation=NULL){
   if (is.null(annotation)){}
   else
   {
-    Protein2Gene$annotation <- annotation
+    interaction_nodes$annotation <- annotation
   }
   colnames(geneinfo) <- "Symbol"
   return(CellChat::updateCellChatDB(interaction_nodes,
