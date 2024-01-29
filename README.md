@@ -38,7 +38,8 @@ Then, we use 'rfq_nodes' as input with make to build a cellchatdb which can be u
 ```
 # Usage of make_cellchatdb()
 # Do not run!
-make_cellchatdb(interaction_nodes, # nodes file generated from get_nodes().
+make_customdb(interaction_nodes, # nodes file generated from get_nodes().
+      gene_info = NULL, # gene & protein infomations generated from down_gtf() if you need to transform protein_id to gene.
     enrich = NULL, # A given pathway type, such as "KEGG：rfq00250", or "GO", as you wish, but better follow the CellChat db format.
     annotation = NULL # A given interaction type, one of "Secreted Signaling", "ECM-Recptor", "Cell-Cell Contact", "Non-protein Signaling".)
 # Start here
