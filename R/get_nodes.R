@@ -1,6 +1,6 @@
 #' Get interactions nodes from STRINGdb.
 #'
-#' @param identifiers required parameter for multiple items, e.g. DRD1_HUMAN%0dDRD2_HUMAN.
+#' @param identifiers required parameter for multiple items, e.g. "TP53", c("TP53", "CKD2").
 #' @param species NCBI taxon identifiers (e.g. Human is 9606, see: STRING organisms).
 #' @param required_score threshold of significance to include an interaction, a number between 0 and 1000 (default depends on the network).
 #' @param network_type network type: functional (default), physical.
