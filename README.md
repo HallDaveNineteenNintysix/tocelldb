@@ -36,14 +36,18 @@ rfq_nodes <- get_nodes(c("PPAT","GPR143","GAD1","ALDH5A1","GOT2","NAT8L","ASPA",
 ```
 Then, we use 'rfq_nodes' as input with make to build a cellchatdb which can be used in CellChat analysis.
 ```
-# Usage of make_cellchatdb()
+# Usage of make_customdb()
 # Do not run!
 make_customdb(interaction_nodes, # nodes file generated from get_nodes().
       gene_info = NULL, # gene & protein infomations generated from down_gtf() if you need to transform protein_id to gene.
     enrich = NULL, # A given pathway type, such as "KEGG：rfq00250", or "GO", as you wish, but better follow the CellChat db format.
     annotation = NULL # A given interaction type, one of "Secreted Signaling", "ECM-Recptor", "Cell-Cell Contact", "Non-protein Signaling".)
 # Start here
-rfq_cellchatdb <- make_cellchatdb(rfq_nodes, enrich = "KEGG：rfq00250", annotation = "Secreted Signaling")
+rfq_cellchatdb <- make_customdb(rfq_nodes, enrich = "KEGG：rfq00250", annotation = "Secreted Signaling")
 ```
 ### Make a customized cellchatdb
-We can download 'Protein(FASTA)' and 'Annotation features(GTF)' form NCBI. Then upload 'Protein(FASTA)' file, normally names 'protein.faa' to STRINGdb. After processing, we can search for our interested protein or pathways, then export .tsv files (...as short tabular text output) for input of make_customdb(), And 'genomic.gtf' as gene_info parameter.
+We can download 'Protein(FASTA)' and 'Annotation features(GTF)' from NCBI. Then upload 'Protein(FASTA)' file, normally names 'protein.faa' to STRINGdb to add new organisms. After processing, we can search for our interested protein or pathways, then export .tsv files (...as short tabular text output) for input of make_customdb() from a STRINGdb network, And 'genomic.gtf' as gene_info parameter.
+```
+# Usage of make_customdb()
+rfq_cellchatdb <- make_customdb("nodes.tsv", gene_info = 'genomic.gtf',enrich = NULL, annotation = NULL)
+```
