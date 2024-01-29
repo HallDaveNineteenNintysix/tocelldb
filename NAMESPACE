@@ -2,5 +2,4 @@
 
 export(deal_gtf)
 export(get_nodes)
-export(make_cellchatdb)
 export(make_customdb)
