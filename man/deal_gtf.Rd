@@ -2,7 +2,7 @@
 % Please edit documentation in R/deal_gtf.R
 \name{deal_gtf}
 \alias{deal_gtf}
-\title{Download a gtf file from ncbi.}
+\title{Load a gtf file.}
 \usage{
 deal_gtf(gtf_file)
 }
@@ -13,7 +13,7 @@ deal_gtf(gtf_file)
 gene & protein informations.
 }
 \description{
-Download a gtf file from ncbi and get gene & protein infomations.
+Load a gtf file from ncbi and get gene & protein infomations.
 }
 \examples{
 NA
