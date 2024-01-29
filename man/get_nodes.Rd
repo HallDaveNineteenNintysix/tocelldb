@@ -15,7 +15,7 @@ get_nodes(
 )
 }
 \arguments{
-\item{identifiers}{required parameter for multiple items, e.g. DRD1_HUMAN\%0dDRD2_HUMAN.}
+\item{identifiers}{required parameter for multiple items, e.g. "TP53", c("TP53", "CKD2").}
 
 \item{species}{NCBI taxon identifiers (e.g. Human is 9606, see: STRING organisms).}
 
