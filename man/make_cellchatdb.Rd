@@ -4,12 +4,14 @@
 \alias{make_cellchatdb}
 \title{make a custom cell chat database.}
 \usage{
-make_cellchatdb(interaction_nodes, enrich = NULL)
+make_cellchatdb(interaction_nodes, enrich = NULL, annotation = NULL)
 }
 \arguments{
-\item{interaction_nodes}{node file generated from get_nodes.}
+\item{interaction_nodes}{nodes file generated from get_nodes.}
 
-\item{enrich}{A give pathway type, such as "KEGG", or "GO", as you wish.}
+\item{enrich}{A given pathway type, such as "KEGG：map04216", or "GO", as you wish.}
+
+\item{annotation}{A given interaction type, one of "Secreted Signaling", "ECM-Recptor", "Cell-Cell Contact", "Non-protein Signaling".}
 }
 \value{
 a cell chat database.
