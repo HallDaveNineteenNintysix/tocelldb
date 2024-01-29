@@ -2,15 +2,16 @@
 #'@description
 #'make a custom cell chat database with a input node file downloaded from STRINGdb.
 #'
-#' @param interaction_nodes node file downloaded from STRINGdb.
+#' @param interaction_nodes nodes file downloaded from STRINGdb.
 #' @param gene_info gene & protein infomations generated from down_gtf().
-#' @param enrich A give pathway type, such as "KEGG：map04216".
+#' @param enrich A given pathway type, such as "KEGG：map04216".
+#' @param annotation A given interaction type, one of "Secreted Signaling", "ECM-Recptor", "Cell-Cell Contact", "Non-protein Signaling".
 #'
 #' @return a cell chat database.
 #' @export
 #'
 #' @examples NA
-make_customdb <- function(interaction_nodes,gene_info,enrich=NULL){
+make_customdb <- function(interaction_nodes,gene_info,enrich=NULL,annotation=NULL){
   Protein2Gene <- utils::read.csv(interaction_nodes,sep="\t")[,c(1,2)]
   tmp1 <- Protein2Gene[,1]
   tmp2 <- Protein2Gene[,2]
@@ -31,6 +32,11 @@ make_customdb <- function(interaction_nodes,gene_info,enrich=NULL){
   else
   {
     Protein2Gene$evidence <- enrich
+  }
+  if (is.null(annotation)){}
+  else
+  {
+    Protein2Gene$annotation <- annotation
   }
   return(CellChat::updateCellChatDB(
     Protein2Gene,
