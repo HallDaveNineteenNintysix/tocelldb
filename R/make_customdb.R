@@ -3,7 +3,7 @@
 #'make a custom cell chat database with a input node file downloaded from STRINGdb.
 #'
 #' @param interaction_nodes nodes file downloaded from STRINGdb.
-#' @param gene_info gene & protein infomations generated from down_gtf().
+#' @param gene_info gene & protein infomations generated from down_gtf() if you need to transform protein_id to gene.
 #' @param enrich A given pathway type, such as "KEGG：map04216".
 #' @param annotation A given interaction type, one of "Secreted Signaling", "ECM-Recptor", "Cell-Cell Contact", "Non-protein Signaling".
 #'
@@ -11,35 +11,55 @@
 #' @export
 #'
 #' @examples NA
-make_customdb <- function(interaction_nodes,gene_info,enrich=NULL,annotation=NULL){
-  Protein2Gene <- utils::read.csv(interaction_nodes,sep="\t")[,c(1,2)]
-  tmp1 <- Protein2Gene[,1]
-  tmp2 <- Protein2Gene[,2]
-  colnames(Protein2Gene) <- c("ligand","receptor")
-  for (i in 1:length(Protein2Gene$ligand)) {
+make_customdb <- function(interaction_nodes,gene_info=NULL,enrich=NULL,annotation=NULL){
+  if (is.null(gene_info)){
+    interaction_nodes <- interaction_nodes[,c(1,2)]
+    colnames(interaction_nodes) <- c("ligand","receptor")
+    interaction_nodes$interaction_name <- paste0(interaction_nodes$ligand,"-",interaction_nodes$receptor)
+    interaction_nodes$pathway_name <- interaction_nodes$ligand
+    geneinfo <- as.data.frame(unique(c(interaction_nodes$ligand,interaction_nodes$receptor)))
+    if (is.null(enrich)){}
+    else
+    {
+      interaction_nodes$evidence = enrich
+    }
+    if (is.null(annotation)){}
+    else
+    {
+      interaction_nodes$annotation <- annotation
+    }
+    colnames(geneinfo) <- "Symbol"
+  }
+  else {
+  nodes <- utils::read.csv(interaction_nodes,sep="\t")[,c(1,2)]
+  tmp1 <- interaction_nodes[,1]
+  tmp2 <- interaction_nodes[,2]
+  colnames(interaction_nodes) <- c("ligand","receptor")
+  for (i in 1:length(interaction_nodes$ligand)) {
     gene1 <- gene_info$gene[match(tmp1[i],gene_info$protein_id)]
     gene2 <- gene_info$gene[match(tmp2[i],gene_info$protein_id)]
     tmp1[i] <- gene1
     tmp2[i] <- gene2
   }
-  Protein2Gene[,1] <- tmp1
-  Protein2Gene[,2] <- tmp2
-  Protein2Gene$interaction_name <- paste0(Protein2Gene$ligand,"-",Protein2Gene$receptor)
-  Protein2Gene$pathway_name <- Protein2Gene$ligand
-  geneinfo <- as.data.frame(unique(c(Protein2Gene$ligand,Protein2Gene$receptor)))
+  interaction_nodes[,1] <- tmp1
+  interaction_nodes[,2] <- tmp2
+  interaction_nodes$interaction_name <- paste0(interaction_nodes$ligand,"-",interaction_nodes$receptor)
+  interaction_nodes$pathway_name <- interaction_nodes$ligand
+  geneinfo <- as.data.frame(unique(c(interaction_nodes$ligand,interaction_nodes$receptor)))
   colnames(geneinfo) <- "Symbol"
   if (is.null(enrich)){}
   else
   {
-    Protein2Gene$evidence <- enrich
+    interaction_nodes$evidence <- enrich
   }
   if (is.null(annotation)){}
   else
   {
-    Protein2Gene$annotation <- annotation
+    interaction_nodes$annotation <- annotation
+  }
   }
   return(CellChat::updateCellChatDB(
-    Protein2Gene,
+    interaction_nodes,
     gene_info = geneinfo,
     other_info = NULL,
     merged = FALSE,
