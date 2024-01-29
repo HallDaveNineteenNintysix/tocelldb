@@ -44,3 +44,5 @@ make_cellchatdb(interaction_nodes, # nodes file generated from get_nodes().
 # Start here
 rfq_cellchatdb <- make_cellchatdb(rfq_nodes, enrich = "KEGG：rfq00250", annotation = "Secreted Signaling")
 ```
+### Download what we need from NCBI
+If the species haven't provided by STRINGdb, but has a reference genome in NCBI, we can use
