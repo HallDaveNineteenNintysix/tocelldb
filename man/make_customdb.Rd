@@ -4,12 +4,17 @@
 \alias{make_customdb}
 \title{make a custom cell chat database.}
 \usage{
-make_customdb(interaction_nodes, gene_info, enrich = NULL, annotation = NULL)
+make_customdb(
+  interaction_nodes,
+  gene_info = NULL,
+  enrich = NULL,
+  annotation = NULL
+)
 }
 \arguments{
 \item{interaction_nodes}{nodes file downloaded from STRINGdb.}
 
-\item{gene_info}{gene & protein infomations generated from down_gtf().}
+\item{gene_info}{gene & protein infomations generated from down_gtf() if you need to transform protein_id to gene.}
 
 \item{enrich}{A given pathway type, such as "KEGG：map04216".}
 
