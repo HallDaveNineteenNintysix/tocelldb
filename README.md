@@ -1,3 +1,3 @@
 # tocelldb
-**Customize your specific organism cellchatdb~
+Customize your specific organism cellchatdb~
 While you might feel confused when you have no idea about dealing with cell communication analysis, it is because you do not possess a specific cellchat database of your own organism. Normally, this can only be done in humans or mice, or by matching homologous genes in your species. Now we provide a method that utilizes STRINGdb to predict interactions of your specific species as long as it has a reference genome. Alternatively, if you input a DGE list, we could assist you in predicting interactions and determining the reasons behind differential gene expression!
