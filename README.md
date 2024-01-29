@@ -45,4 +45,4 @@ make_cellchatdb(interaction_nodes, # nodes file generated from get_nodes().
 rfq_cellchatdb <- make_cellchatdb(rfq_nodes, enrich = "KEGG：rfq00250", annotation = "Secreted Signaling")
 ```
 ### Make a customized cellchatdb
-We can download 'Protein(FASTA)' and 'Annotation features(GTF)' form NCBI. Then upload 'Protein(FASTA)' file, normally names 'protein.faa' to STRINGdb. After processing, we can search for our interested protein or pathways, then export .tsv files (...as short tabular text output) for input of make_customdb(). We first
+We can download 'Protein(FASTA)' and 'Annotation features(GTF)' form NCBI. Then upload 'Protein(FASTA)' file, normally names 'protein.faa' to STRINGdb. After processing, we can search for our interested protein or pathways, then export .tsv files (...as short tabular text output) for input of make_customdb(). 
