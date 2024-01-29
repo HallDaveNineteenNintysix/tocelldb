@@ -7,6 +7,8 @@
 get_nodes(
   identifiers,
   species = 9606,
+  partners = FALSE,
+  limit = 10,
   required_score = 400,
   network_type = "functional",
   show_query_node_labels = 0,
@@ -18,6 +20,10 @@ get_nodes(
 \item{identifiers}{A character vector of required parameter for multiple items, e.g. "TP53", c("TP53", "CKD2").}
 
 \item{species}{NCBI taxon identifiers (e.g. Human is 9606, see: STRING organisms).}
+
+\item{partners}{TRUE or FALSE(default), default retrieves only the interactions between the set of input proteins and between their closest interaction neighborhood (if add_nodes parameters is specified), interaction_partners API method provides the interactions between your set of proteins and all the other STRING proteins.}
+
+\item{limit}{10 by default while partners set to TRUE. the number of interaction partners retrieved per protein (most confident interactions come first)}
 
 \item{required_score}{threshold of significance to include an interaction, a number between 0 and 1000 (default depends on the network).}
 
