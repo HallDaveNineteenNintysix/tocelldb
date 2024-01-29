@@ -14,6 +14,8 @@ get_nodes(identifiers, # A character vector of genes, such as c("CDC42","CDK1",
                   # https://string-db.org/cgi/input.pl?input_page_active_form=organisms/).
   required_score = 400, # threshold of significance to include a interaction,
                         # a number between 0 and 1000 (default depends on the network).
+  partners=FALSE, # Whether provides the interactions between your set of proteins and all the other STRING proteins.
+  limit=10, #  10 by default while partners set to TRUE. the number of interaction partners retrieved per protein (most confident interactions come first)
   network_type = "functional", # network type: functional (default), physical.
   show_query_node_labels = 0, # when available use submitted names in the preferredName
                               # column when (0 or 1) (default:0)
