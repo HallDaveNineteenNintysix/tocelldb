@@ -31,7 +31,7 @@ make_customdb <- function(interaction_nodes,gene_info=NULL,enrich=NULL,annotatio
     colnames(geneinfo) <- "Symbol"
   }
   else {
-  nodes <- utils::read.csv(interaction_nodes,sep="\t")[,c(1,2)]
+  interaction_nodes <- utils::read.csv(interaction_nodes,sep="\t")[,c(1,2)]
   tmp1 <- interaction_nodes[,1]
   tmp2 <- interaction_nodes[,2]
   colnames(interaction_nodes) <- c("ligand","receptor")
