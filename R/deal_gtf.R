@@ -9,9 +9,7 @@
 #'
 #' @examples NA
 deal_gtf <- function(gtf_file){
-  gtf <- rtracklayer::import(gtf_file)
-  gtf <- as.data.frame(gtf)
-  Protein <- gtf[,c("protein_id","gene")]
-  Protein <- Protein[is.na(Protein$protein_id)==F,]
-  return(Protein)
+  gtf <- as.data.frame(rtracklayer::import(gtf_file))
+  gtf <- gtf[is.na(gtf$protein_id)==F,c("protein_id","gene")]
+  return(gtf)
 }
