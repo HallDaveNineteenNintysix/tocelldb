@@ -37,7 +37,6 @@ make_customdb <- function(interaction_nodes,gene_info=NULL,enrich=NULL,annotatio
       dplyr::mutate(interaction_nodes, ligand = gene_info$gene[match(interaction_nodes$ligand,gene_info$protein_id)])
     interaction_nodes <-
       dplyr::mutate(interaction_nodes, receptor = gene_info$gene[match(interaction_nodes$receptor,gene_info$protein_id)])
-    print("test!")
     interaction_nodes$interaction_name <- paste0(interaction_nodes$ligand,"-",interaction_nodes$receptor)
     interaction_nodes$pathway_name <- interaction_nodes$ligand
     geneinfo <- as.data.frame(unique(c(interaction_nodes$ligand,interaction_nodes$receptor)))
