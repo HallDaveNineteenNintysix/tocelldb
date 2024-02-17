@@ -12,6 +12,7 @@ Imports:
     CellChat,
     dplyr,
     rtracklayer,
+    stringr,
     utils
 Suggests: 
     testthat (>= 3.0.0)
