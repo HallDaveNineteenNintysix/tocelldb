@@ -12,9 +12,12 @@
 #'
 #' @examples NA
 make_customdb <- function(interaction_nodes,gene_info=NULL,enrich=NULL,annotation=NULL){
+  if (is.character(interaction_nodes)){
+    interaction_nodes <- utils::read.csv(interaction_nodes,sep="\t")[,c(1,2)]
+    colnames(interaction_nodes) <- c("ligand","receptor")
+  }
   if (is.null(gene_info)){
     interaction_nodes <- interaction_nodes[,c(1,2)]
-    colnames(interaction_nodes) <- c("ligand","receptor")
     interaction_nodes$interaction_name <- paste0(interaction_nodes$ligand,"-",interaction_nodes$receptor)
     interaction_nodes$pathway_name <- interaction_nodes$ligand
     geneinfo <- as.data.frame(unique(c(interaction_nodes$ligand,interaction_nodes$receptor)))
@@ -31,8 +34,6 @@ make_customdb <- function(interaction_nodes,gene_info=NULL,enrich=NULL,annotatio
     colnames(geneinfo) <- "Symbol"
   }
   else {
-    interaction_nodes <- utils::read.csv(interaction_nodes,sep="\t")[,c(1,2)]
-    colnames(interaction_nodes) <- c("ligand","receptor")
     interaction_nodes <-
       dplyr::mutate(interaction_nodes, ligand = gene_info$gene[match(interaction_nodes$ligand,gene_info$protein_id)])
     interaction_nodes <-
