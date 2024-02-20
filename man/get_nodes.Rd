@@ -9,7 +9,7 @@ get_nodes(
   species = 9606,
   partners = FALSE,
   limit = 10,
-  required_score = 400,
+  required_score = 700,
   network_type = "functional",
   show_query_node_labels = 0,
   add_nodes = 10,
